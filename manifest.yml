@@ -1,0 +1,6 @@
+applications:
+  - name: Execution-app-test
+    buildpack: staticfile_buildpack
+    memory: 512MB
+    instances: 1
+    path: dist/btp-sd-app
