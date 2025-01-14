@@ -1054,7 +1054,7 @@ export class ExecutionOrderComponent {
 
           totalQuantity: item.totalQuantity,
           amountPerUnit: item.amountPerUnit,
-          total: item.total,
+          //total: item.total,
 
 
           // quantities:
