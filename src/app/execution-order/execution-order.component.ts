@@ -121,7 +121,8 @@ export class ExecutionOrderComponent {
       this.mainItemsRecords = [...this._ExecutionOrderService.getMainItems()];
       console.log(this.mainItemsRecords);
     }
-    this._ApiService.get<MainItem[]>(`executionordermain/referenceid?referenceId=${this.documentNumber}`).subscribe({
+    //localhost:8080/executionordermain/referenceid?referenceId=6&salesOrderItem=10
+    this._ApiService.get<MainItem[]>(`executionordermain/referenceid?referenceId=${this.documentNumber}&salesOrderItem=${this.itemNumber}`).subscribe({
       next: (res) => {
         this.mainItemsRecords = res.sort((a, b) => a.executionOrderMainCode - b.executionOrderMainCode);
         this.itemText = this.mainItemsRecords[0].salesOrderItemText ? this.mainItemsRecords[0].salesOrderItemText : "";
@@ -1080,7 +1081,9 @@ export class ExecutionOrderComponent {
         // https://trial.cfapps.us10-001.hana.ondemand.com/executionordermain?salesOrder=6&salesOrderItem=10&customerNumber=591001
 
         // Set dynamic parameters for URL
-        const url = `executionordermain?salesOrder=${this.documentNumber}&salesOrderItem=${this.itemNumber}&customerNumber=${this.customerId}`;
+        //localhost:8080/executionordermain?salesOrder=6&salesOrderItem=10&pricingProcedureStep=20&pricingProcedureCounter=1&customerNumber=12000000
+
+        const url = `executionordermain?salesOrder=${this.documentNumber}&salesOrderItem=${this.itemNumber}&pricingProcedureStep=20&pricingProcedureCounter=1&customerNumber=${this.customerId}`;
 
         // Send the array of bodyRequest objects to the server in a single POST request
         this._ApiService.post<MainItem[]>(url, saveRequests).subscribe({
